@@ -1,0 +1,32 @@
+
+section .data
+byte_int     db     0x7C
+word_int     dw     0x1234
+dWord_int    dd     0x4E6F6720
+qWord_int    dq     0xF0E1D2C3B4A59687
+sum          dq     0
+
+section .text
+global main
+main:
+    mov rbp, rsp; 
+    
+    movsx   rax,byte[byte_int]      ; moved byte length int into rax
+    
+    movzx   rbx,word[word_int]      ; moved word length int into rbx
+    
+    movsxd  rcx,dword[dWord_int]    ; moved double word length int into rcx
+    
+    mov     rdx,qword[qWord_int]    
+    
+    add     rax,rbx
+    
+    add     rax,rcx
+    
+    add     rax,rdx
+    
+    mov     qword[sum],rax
+    
+    xor     rax,rax
+    
+    ret
